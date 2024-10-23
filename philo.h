@@ -6,7 +6,7 @@
 /*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 15:24:45 by jdelorme          #+#    #+#             */
-/*   Updated: 2024/10/16 16:02:21 by jdelorme         ###   ########.fr       */
+/*   Updated: 2024/10/23 18:46:13 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,14 @@
 #include <stdlib.h> // malloc, free
 #include <sys/time.h> // gettimeofday
 #include <limits.h> // INT_MAX
+#include "libft/libft.h" 
+
+#define RED     "\x1B[31m"  // Rojo
+#define GREEN   "\x1B[32m"  // Verde
+#define BLUE    "\x1B[34m"  // Azul
+#define RESET   "\x1B[0m"   // Reset color in terminal
+
+
 
 //          PARAMETROS DE FILO           //
 //---------------------------------------//
@@ -35,10 +43,6 @@ typedef		pthread_mutex_t	t_mtx;
 //-------------ESTRUCTURAS--------------//
 
 //! ESTRUCTURA 
-typdef struct	s_table
-{
-	
-}				t_table;
 
 
 //! (ESTRUCTURA TENEDORES (FORKS) "MUTEX THREADS")//
@@ -71,3 +75,23 @@ typedef	struct	s_philo
 	/*Hilos, aka filosofos*/
 	pthread_t	philo;
 }			t_philo;
+
+typedef struct	s_table
+{
+	size_t	philo_nbr;
+	size_t	time_to_die;
+	size_t	time_to_eat;
+	size_t	time_to_sleep;
+	size_t	nbr_limit_meals;
+	long	start_simulation;
+	int		end_simulation;
+	t_fork	*forks;
+	t_philo	*philos;
+}				t_table;
+
+
+/*     FUNCIONES     */
+
+int	ft_error_exit(char *error);
+
+void	ft_parsing_philo(t_table table, char **params);
