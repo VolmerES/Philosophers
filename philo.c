@@ -6,7 +6,7 @@
 /*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 16:34:08 by jdelorme          #+#    #+#             */
-/*   Updated: 2024/10/23 18:54:35 by jdelorme         ###   ########.fr       */
+/*   Updated: 2024/10/24 16:48:30 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,12 @@
 
 
 /*           ESTRUCTURA DEL PROYECO          */
-//?	 1.-Checkeo de errores (parsing input)
-//*			D) Comprobar que los timestamps sean mayores que 60 ms
-//*			E) Comprobar si tenemos argumento 5. En caso contrario establecer en - 1, como flag
-
+//?	 1.-Checkeo de errores (parsing input)       //  OK
 //?  2.-Creacion de hilos (data inicialitation)
+//  		a) End simulation tenemos que establecerlo en falso
+//  		b) Tenemos que reservar malloc para los filosofos
+//  		c) Respescto a b Tenemos que hacer una funcion para los mallocs (orden) y quedevuelva NUll en caso de fallo
+//
 //?  3.-Inicio de cena (dinner start)
 //?  4.-Limpieza de hilos (leaks cleaner)
 //-------------------------------------------//
@@ -39,7 +40,8 @@ int	main(int argc, char **argv)
 	
 	if (argc == 5 || argc == 6)
 	{
-		ft_parsing_philo(table, argv);
+		ft_parsing_philo(&table, argv);
+		ft_init_data(&table);
 	}
 	else
 		ft_error_exit(RED "Error: Wrong parameters\n"
