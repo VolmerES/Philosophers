@@ -6,12 +6,11 @@
 /*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 17:15:44 by jdelorme          #+#    #+#             */
-/*   Updated: 2024/10/23 18:47:32 by jdelorme         ###   ########.fr       */
+/*   Updated: 2024/10/24 14:30:13 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
 
  /*TAL VEZ IMPLEMENTAR QUE LOS PARAMENTROS ESTEN ENTRE COMILLAS */
 
@@ -46,14 +45,21 @@ static size_t	ft_atosize_t(char *param)
 	return (nbr);
 }
 
-void	ft_parsing_philo(t_table table, char **params)
+void	ft_parsing_philo(t_table *table, char **params)
 {
-	table.philo_nbr = ft_atosize_t(params[1]);
-	printf("Philo number: %zu\n", table.philo_nbr);
-	table.time_to_die = ft_atosize_t(params[2]) * 1000;
-	printf("Time to die: %zu\n", table.time_to_die);
-	table.time_to_eat = ft_atosize_t(params[3]) * 1000;
-	printf("Time to eat: %zu\n", table.time_to_eat);
-	table.time_to_sleep = ft_atosize_t(params[4]) * 1000;
-	printf("Time to sleep: %zu\n", table.time_to_sleep);
+	table->philo_nbr = ft_atosize_t(params[1]);
+	printf("Philo number: %zu\n", table->philo_nbr);
+	table->time_to_die = ft_atosize_t(params[2]) * 1000;
+	printf("Time to die: %zu\n", table->time_to_die);
+	table->time_to_eat = ft_atosize_t(params[3]) * 1000;
+	printf("Time to eat: %zu\n", table->time_to_eat);
+	table->time_to_sleep = ft_atosize_t(params[4]) * 1000;
+	printf("Time to sleep: %zu\n", table->time_to_sleep);
+	if (params[5])
+	{
+		table->must_eat = ft_atosize_t(params[5]);
+		printf("Must eat: %zu\n", table->must_eat);
+	}
+	else
+		table->must_eat = -1;
 }
