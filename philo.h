@@ -6,7 +6,7 @@
 /*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 15:24:45 by jdelorme          #+#    #+#             */
-/*   Updated: 2024/10/24 17:07:36 by jdelorme         ###   ########.fr       */
+/*   Updated: 2024/10/24 18:30:04 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ typedef	struct	s_philo
 
 	/*Hilos, aka filosofos*/
 	pthread_t	philo;
+	
+	t_table		*table;
 }			t_philo;
 
 typedef struct	s_table
@@ -118,3 +120,8 @@ void	ft_parsing_philo(t_table *table, char **params);
 
 /* 			    INIT.C  			*/
 void	ft_init_data(t_table *table);
+
+/* 				SAFE.C				*/
+void	ft_mutex_safe(t_mtx *mutex, t_code code);
+void	*ft_malloc_safe(size_t size);
+void	ft_thread_safe(pthread_t *thread, t_code code, void *(*func)(void *), void *arg);
