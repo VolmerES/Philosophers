@@ -6,7 +6,7 @@
 /*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 15:24:45 by jdelorme          #+#    #+#             */
-/*   Updated: 2024/10/23 18:46:13 by jdelorme         ###   ########.fr       */
+/*   Updated: 2024/10/24 17:07:36 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <sys/time.h> // gettimeofday
 #include <limits.h> // INT_MAX
 #include "libft/libft.h" 
+#include <errno.h> // Para las macros de salidas de error de mutex
 
 #define RED     "\x1B[31m"  // Rojo
 #define GREEN   "\x1B[32m"  // Verde
@@ -43,6 +44,19 @@ typedef		pthread_mutex_t	t_mtx;
 //-------------ESTRUCTURAS--------------//
 
 //! ESTRUCTURA 
+
+
+//! ESTRUCTURA DE CODIGOS DE OPERACION MUTEX//
+typedef enum	e_code
+{
+	LOCK,
+	UNLOCK,
+	INIT,
+	DESTROY,
+	CREATE,
+	JOIN,
+	DETACH,
+}			t_code;
 
 
 //! (ESTRUCTURA TENEDORES (FORKS) "MUTEX THREADS")//
@@ -82,7 +96,7 @@ typedef struct	s_table
 	size_t	time_to_die;
 	size_t	time_to_eat;
 	size_t	time_to_sleep;
-	size_t	nbr_limit_meals;
+	size_t	must_eat;
 	long	start_simulation;
 	int		end_simulation;
 	t_fork	*forks;
@@ -92,6 +106,15 @@ typedef struct	s_table
 
 /*     FUNCIONES     */
 
+/*				ERROR.C				*/
 int	ft_error_exit(char *error);
+void	ft_error_mutex(t_code code, int status);
+void	ft_error_thread(t_code code, int status);
 
-void	ft_parsing_philo(t_table table, char **params);
+
+/* 			    PARSING.C  			*/
+void	ft_parsing_philo(t_table *table, char **params);
+
+
+/* 			    INIT.C  			*/
+void	ft_init_data(t_table *table);
