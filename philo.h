@@ -6,7 +6,7 @@
 /*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 15:24:45 by jdelorme          #+#    #+#             */
-/*   Updated: 2024/10/30 16:51:18 by jdelorme         ###   ########.fr       */
+/*   Updated: 2024/10/30 16:55:44 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,3 +128,4 @@ void	ft_thread_safe(pthread_t *thread, t_code code, void *(*func)(void *), void 
 
 /*				DINNER.C			*/
 void	ft_dinner_start(t_table *table);
+void	ft_start_simulation(void *data);
