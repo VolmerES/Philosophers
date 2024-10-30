@@ -6,7 +6,7 @@
 /*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 15:24:45 by jdelorme          #+#    #+#             */
-/*   Updated: 2024/10/24 18:30:04 by jdelorme         ###   ########.fr       */
+/*   Updated: 2024/10/30 16:51:18 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ typedef struct	s_table
 /*     FUNCIONES     */
 
 /*				ERROR.C				*/
-int	ft_error_exit(char *error);
+int		ft_error_exit(char *error);
 void	ft_error_mutex(t_code code, int status);
 void	ft_error_thread(t_code code, int status);
 
@@ -125,3 +125,6 @@ void	ft_init_data(t_table *table);
 void	ft_mutex_safe(t_mtx *mutex, t_code code);
 void	*ft_malloc_safe(size_t size);
 void	ft_thread_safe(pthread_t *thread, t_code code, void *(*func)(void *), void *arg);
+
+/*				DINNER.C			*/
+void	ft_dinner_start(t_table *table);
