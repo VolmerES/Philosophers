@@ -6,7 +6,7 @@
 /*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 14:23:15 by jdelorme          #+#    #+#             */
-/*   Updated: 2024/10/24 18:59:19 by jdelorme         ###   ########.fr       */
+/*   Updated: 2024/10/30 16:38:25 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,16 @@
 
 static void	ft_assign_forks(t_philo *philo, t_fork *forks, int pos)
 {
+	int	philo_nbr;
 
+	philo_nbr = philo->table->philo_nbr;
+	philo->right_fork = &forks[(pos + 1) % philo_nbr];
+	philo->left_fork = &forks[pos];
+	if (philo_nbr % 2 == 0)
+	{
+		philo->right_fork = &forks[pos];
+		philo->left_fork = &forks[(pos + 1) % philo_nbr];
+	}
 }
 
 static void	ft_philosphers_init(t_table *table)
