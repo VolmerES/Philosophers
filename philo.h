@@ -6,9 +6,12 @@
 /*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 15:24:45 by jdelorme          #+#    #+#             */
-/*   Updated: 2024/12/05 20:04:35 by volmer           ###   ########.fr       */
+/*   Updated: 2024/12/05 21:04:22 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef PHILO_H
+#define PHILO_H
 
 #include <pthread.h> // pthread_create, pthread_join, pthread_mutex_init, pthread_mutex_lock, pthread_mutex_unlock
 #include <unistd.h> // usleep
@@ -40,6 +43,8 @@
 //----------DEFINES LEGIBILIDAD---------//
 //     Mutex definido mas corto
 typedef		pthread_mutex_t	t_mtx;
+typedef struct s_table t_table;
+typedef	struct s_philo t_philo;
 
 
 //-------------ESTRUCTURAS--------------//
@@ -108,6 +113,8 @@ typedef	struct	s_philo
 
 	/*Hilos, aka filosofos*/
 	pthread_t	philo;
+
+	t_mtx		philo_mutex_race;
 	
 	t_table		*table;
 }			t_philo;
@@ -124,7 +131,6 @@ typedef struct	s_table
 	int		bool_threads_ready;
 	t_fork	*forks;
 	t_philo	*philos;
-	t_mtx	table_mutex;
 	t_mtx	table_mutex;
 	t_mtx	write_locks;
 }				t_table;
@@ -152,7 +158,7 @@ void	ft_thread_safe(pthread_t *thread, t_code code, void *(*func)(void *), void 
 
 /*				DINNER.C			*/
 void	ft_dinner_start(t_table *table);
-void	ft_start_simulation(void *data);
+void	*ft_start_simulation(void *data);
 
 /*				SERGETEER.C			*/
 int		ft_simulation_finish(t_table *table);
@@ -171,3 +177,5 @@ void	ft_precise_usleep(long usec, t_table *table);
 
 /*				WRITE				*/
 void	ft_write_status(t_philo_status status, t_philo *philo, long debug);
+
+#endif
