@@ -6,7 +6,7 @@
 /*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 19:04:06 by volmer            #+#    #+#             */
-/*   Updated: 2024/12/05 19:25:24 by volmer           ###   ########.fr       */
+/*   Updated: 2024/12/05 21:07:06 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,18 @@ void	ft_precise_usleep(long usec, t_table *table)
 	long	elapsed;
 	long	rem;
 
-	start = gettime(MICROSECOND);
-	while (gettime(MICROSECOND) - start < usec)
+	start = ft_getime(MICROSECOND);
+	while (ft_getime(MICROSECOND) - start < usec)
 	{
 		if (ft_simulation_finish(table))
 			break ;
-		elapsed = gettime(MICROSECOND) - start;
+		elapsed = ft_getime(MICROSECOND) - start;
 		rem = usec - elapsed;
 		if (rem > 1e3)
 			usleep(usec / 2);
 		else
 		{
-			while (gettime(MICROSECOND) - start < usec)
+			while (ft_getime(MICROSECOND) - start < usec)
 				;
 		}
 	}
