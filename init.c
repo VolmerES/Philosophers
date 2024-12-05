@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
+/*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 14:23:15 by jdelorme          #+#    #+#             */
-/*   Updated: 2024/10/30 16:38:25 by jdelorme         ###   ########.fr       */
+/*   Updated: 2024/12/04 21:33:20 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void	ft_init_data(t_table *table)
 	table->end_simulation = 0;
 	table->philos = ft_malloc_safe(sizeof(t_philo) * table->philo_nbr);
 	table->forks = ft_malloc_safe(sizeof(t_fork) * table->philo_nbr);
+	ft_mutex_safe(&table->table_mutex, INIT);
+	ft_mutex_safe(&table->table_mutex, INIT);
 	while(++i < table->philo_nbr)
 	{
 		ft_mutex_safe(&table->forks[i].fork, INIT);

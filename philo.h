@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
+/*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 15:24:45 by jdelorme          #+#    #+#             */
-/*   Updated: 2024/10/30 16:55:44 by jdelorme         ###   ########.fr       */
+/*   Updated: 2024/12/04 22:07:57 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,10 +99,13 @@ typedef struct	s_table
 	size_t	time_to_eat;
 	size_t	time_to_sleep;
 	size_t	must_eat;
-	long	start_simulation;
+	int		bool_start_simulation;
 	int		end_simulation;
+	int		bool_threads_ready;
 	t_fork	*forks;
 	t_philo	*philos;
+	t_mtx	table_mutex;
+	t_mtx	table_mutex;
 }				t_table;
 
 
@@ -129,3 +132,10 @@ void	ft_thread_safe(pthread_t *thread, t_code code, void *(*func)(void *), void 
 /*				DINNER.C			*/
 void	ft_dinner_start(t_table *table);
 void	ft_start_simulation(void *data);
+
+/*				SERGETEER.C			*/
+int		ft_simulation_finish(t_table *table);
+void	ft_set_long(t_mtx *mutex, long *dest, long value);
+long	ft_get_long(t_mtx *mutex, long *value);
+int		ft_get_intbool(t_mtx *mutex, int *value);
+void	ft_set_intbool(t_mtx *mutex, int *dest, int value);
