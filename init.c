@@ -6,7 +6,7 @@
 /*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 14:23:15 by jdelorme          #+#    #+#             */
-/*   Updated: 2024/12/05 19:31:36 by volmer           ###   ########.fr       */
+/*   Updated: 2024/12/05 21:05:50 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ static void	ft_philosphers_init(t_table *table)
 		philo->full = -1;
 		philo->meal_count = 0;
 		philo->table = table;
+		ft_mutex_safe(&philo->philo_mutex_race, INIT);
 		ft_assign_forks(philo, table->forks, i);
 	}
 }
@@ -62,5 +63,5 @@ void	ft_init_data(t_table *table)
 		ft_mutex_safe(&table->forks[i].fork, INIT);
 		table->forks[i].fork_id = i;
 	}
-	ft_philosophers_init(table);
+	ft_philosphers_init(table);
 }
