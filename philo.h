@@ -6,7 +6,7 @@
 /*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 15:24:45 by jdelorme          #+#    #+#             */
-/*   Updated: 2024/12/04 22:07:57 by volmer           ###   ########.fr       */
+/*   Updated: 2024/12/05 20:04:35 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 #define GREEN   "\x1B[32m"  // Verde
 #define BLUE    "\x1B[34m"  // Azul
 #define RESET   "\x1B[0m"   // Reset color in terminal
+#define DEBUG_MODE 0		//WRITE FUCNT
 
 
 
@@ -45,6 +46,25 @@ typedef		pthread_mutex_t	t_mtx;
 
 //! ESTRUCTURA 
 
+//! ESTRUCTURA ESTADO DEL PHILO
+
+typedef enum e_philo_status
+{
+	EATING,
+	SLEEPING,
+	THINKING,
+	TAKE_FIRST_FORK,
+	TAKE_SECOND_FORK,
+	DIED,
+}			t_philo_status;
+
+//! ESTRUCTURA PARA GETTIME
+typedef enum e_time_code
+{
+	SECOND,
+	MILLISECOND,
+	MICROSECOND,
+}			t_time_code;
 
 //! ESTRUCTURA DE CODIGOS DE OPERACION MUTEX//
 typedef enum	e_code
@@ -106,6 +126,7 @@ typedef struct	s_table
 	t_philo	*philos;
 	t_mtx	table_mutex;
 	t_mtx	table_mutex;
+	t_mtx	write_locks;
 }				t_table;
 
 
@@ -139,3 +160,14 @@ void	ft_set_long(t_mtx *mutex, long *dest, long value);
 long	ft_get_long(t_mtx *mutex, long *value);
 int		ft_get_intbool(t_mtx *mutex, int *value);
 void	ft_set_intbool(t_mtx *mutex, int *dest, int value);
+
+/*				SYNCHRO				*/
+void	ft_wait_all_threads(t_table *table);
+
+
+/*				UTILS				*/
+long	ft_getime(t_time_code time_code);
+void	ft_precise_usleep(long usec, t_table *table);
+
+/*				WRITE				*/
+void	ft_write_status(t_philo_status status, t_philo *philo, long debug);
