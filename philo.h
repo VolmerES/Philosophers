@@ -6,7 +6,7 @@
 /*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 15:24:45 by jdelorme          #+#    #+#             */
-/*   Updated: 2024/12/18 22:13:04 by volmer           ###   ########.fr       */
+/*   Updated: 2024/12/18 22:28:42 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 #define GREEN   "\x1B[32m"  // Verde
 #define BLUE    "\x1B[34m"  // Azul
 #define RESET   "\x1B[0m"   // Reset color in terminal
-#define DEBUG_MODE 0		//WRITE FUCNT
+#define DEBUG_MODE 1		//WRITE FUCNT
 
 
 
