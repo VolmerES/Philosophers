@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
+/*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 17:15:44 by jdelorme          #+#    #+#             */
-/*   Updated: 2024/10/24 14:30:13 by jdelorme         ###   ########.fr       */
+/*   Updated: 2024/12/18 22:15:05 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ void	ft_parsing_philo(t_table *table, char **params)
 	printf("Time to sleep: %zu\n", table->time_to_sleep);
 	if (params[5])
 	{
-		table->must_eat = ft_atosize_t(params[5]);
-		printf("Must eat: %zu\n", table->must_eat);
+		table->nbr_limit_meals = ft_atosize_t(params[5]);
+		printf("Must eat: %zu\n", table->nbr_limit_meals);
 	}
 	else
-		table->must_eat = -1;
+		table->nbr_limit_meals = -1;
 }

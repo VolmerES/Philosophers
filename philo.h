@@ -6,7 +6,7 @@
 /*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 15:24:45 by jdelorme          #+#    #+#             */
-/*   Updated: 2024/12/05 21:04:22 by volmer           ###   ########.fr       */
+/*   Updated: 2024/12/18 22:13:04 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 #include <limits.h> // INT_MAX
 #include "libft/libft.h" 
 #include <errno.h> // Para las macros de salidas de error de mutex
+#include <stdbool.h> // Para el tipo de dato booleano
 
 #define RED     "\x1B[31m"  // Rojo
 #define GREEN   "\x1B[32m"  // Verde
@@ -97,22 +98,22 @@ typedef struct	s_fork
 typedef	struct	s_philo
 {
 	/*Identificador del filosofo*/
-	int			philo_id;
+	int			id;
 	/*Cantidad de comidas del filo*/
 	long		meal_count;
 	/*Flag booleana*/
-	int			full;
+	bool			full;
 	/*Tiempo desde la ulima comida*/
-	long		last_meal;
+	long		last_meal_time;
 	
 	/*Mutex izquierdo del filo*/
-	t_fork		*left_fork;
+	t_fork		*first_fork;
 	
 	/*Mutex derecho del filo*/
-	t_fork		*right_fork;
+	t_fork		*second_fork;
 
 	/*Hilos, aka filosofos*/
-	pthread_t	philo;
+	pthread_t	philo_id;
 
 	t_mtx		philo_mutex_race;
 	
@@ -125,10 +126,10 @@ typedef struct	s_table
 	size_t	time_to_die;
 	size_t	time_to_eat;
 	size_t	time_to_sleep;
-	size_t	must_eat;
-	int		bool_start_simulation;
-	int		end_simulation;
-	int		bool_threads_ready;
+	size_t	nbr_limit_meals;
+	long		start_simulation;
+	bool	end_simulation;
+	bool	threads_ready;
 	t_fork	*forks;
 	t_philo	*philos;
 	t_mtx	table_mutex;
@@ -161,11 +162,11 @@ void	ft_dinner_start(t_table *table);
 void	*ft_start_simulation(void *data);
 
 /*				SERGETEER.C			*/
-int		ft_simulation_finish(t_table *table);
+bool		ft_simulation_finish(t_table *table);
 void	ft_set_long(t_mtx *mutex, long *dest, long value);
 long	ft_get_long(t_mtx *mutex, long *value);
-int		ft_get_intbool(t_mtx *mutex, int *value);
-void	ft_set_intbool(t_mtx *mutex, int *dest, int value);
+bool	ft_get_bool(t_mtx *mutex, bool *value);
+void	ft_set_bool(t_mtx *mutex, bool *dest, bool value);
 
 /*				SYNCHRO				*/
 void	ft_wait_all_threads(t_table *table);

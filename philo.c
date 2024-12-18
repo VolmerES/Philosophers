@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
+/*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 16:34:08 by jdelorme          #+#    #+#             */
-/*   Updated: 2024/10/24 16:48:30 by jdelorme         ###   ########.fr       */
+/*   Updated: 2024/12/18 22:15:15 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int	main(int argc, char **argv)
 	{
 		ft_parsing_philo(&table, argv);
 		ft_init_data(&table);
+		ft_start_simulation(&table);
+		//ft_clean(&table);//TODO
 	}
 	else
 		ft_error_exit(RED "Error: Wrong parameters\n"

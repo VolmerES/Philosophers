@@ -6,7 +6,7 @@
 /*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 14:23:15 by jdelorme          #+#    #+#             */
-/*   Updated: 2024/12/05 21:05:50 by volmer           ###   ########.fr       */
+/*   Updated: 2024/12/18 22:14:32 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ static void	ft_assign_forks(t_philo *philo, t_fork *forks, int pos)
 	int	philo_nbr;
 
 	philo_nbr = philo->table->philo_nbr;
-	philo->right_fork = &forks[(pos + 1) % philo_nbr];
-	philo->left_fork = &forks[pos];
-	if (philo_nbr % 2 == 0)
+	philo->first_fork = &forks[(pos + 1) % philo_nbr];
+	philo->second_fork = &forks[pos];
+	if (philo_nbr % 2)
 	{
-		philo->right_fork = &forks[pos];
-		philo->left_fork = &forks[(pos + 1) % philo_nbr];
+		philo->first_fork = &forks[pos];
+		philo->second_fork = &forks[(pos + 1) % philo_nbr];
 	}
 }
 
@@ -37,8 +37,8 @@ static void	ft_philosphers_init(t_table *table)
 		philo = table->philos + i;
 		//? Esto hace que en compracion con los forks, los
 		//? filos, tengan un numero mal al empezar por 1, CAMBIAR??
-		philo->philo_id = i + 1;
-		philo->full = -1;
+		philo->id = i + 1;
+		philo->full = false;
 		philo->meal_count = 0;
 		philo->table = table;
 		ft_mutex_safe(&philo->philo_mutex_race, INIT);
@@ -51,8 +51,8 @@ void	ft_init_data(t_table *table)
 	int	i;
 
 	i = -1;
-	table->end_simulation = 0;
-	table->bool_threads_ready = 0;
+	table->end_simulation = false;
+	table->threads_ready = false;
 	table->philos = ft_malloc_safe(sizeof(t_philo) * table->philo_nbr);
 	table->forks = ft_malloc_safe(sizeof(t_fork) * table->philo_nbr);
 	ft_mutex_safe(&table->table_mutex, INIT);

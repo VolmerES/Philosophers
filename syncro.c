@@ -6,7 +6,7 @@
 /*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 18:48:17 by volmer            #+#    #+#             */
-/*   Updated: 2024/12/05 21:06:18 by volmer           ###   ########.fr       */
+/*   Updated: 2024/12/18 21:58:41 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	ft_wait_all_threads(t_table *table)
 {
-	while (!ft_get_intbool(&table->table_mutex, &table->bool_threads_ready))
-	{
+	while (!ft_get_bool(&table->table_mutex, &table->threads_ready))
 		;
-	}
 }
