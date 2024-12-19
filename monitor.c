@@ -6,7 +6,7 @@
 /*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 17:38:01 by volmer            #+#    #+#             */
-/*   Updated: 2024/12/19 18:26:44 by volmer           ###   ########.fr       */
+/*   Updated: 2024/12/19 18:32:38 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void	*ft_monitor_dinner(void *data)
 		{
 			if (ft_philo_died(&table->philos[i]))
 			{
-				ft_set_bool(&table->table_mutex, &table->end_simulation, true);
 				ft_write_status(DIED, &table->philos[i], DEBUG_MODE);
+				ft_set_bool(&table->table_mutex, &table->end_simulation, true);
 			}
 		}
 	}
