@@ -6,7 +6,7 @@
 /*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:42:27 by jdelorme          #+#    #+#             */
-/*   Updated: 2024/12/19 18:07:28 by volmer           ###   ########.fr       */
+/*   Updated: 2024/12/19 18:36:02 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,7 @@ void	ft_dinner_start(t_table *table)
 	i = -1;
 	while (++i < table->philo_nbr)
 		ft_thread_safe(&table->philos[i].philo_id, JOIN, NULL, NULL);
+	ft_set_bool(&table->table_mutex, &table->end_simulation, true);
+	ft_thread_safe(&table->monitor, JOIN, NULL, NULL);
 }
 	

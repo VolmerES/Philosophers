@@ -6,7 +6,7 @@
 /*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 19:04:06 by volmer            #+#    #+#             */
-/*   Updated: 2024/12/19 17:46:58 by volmer           ###   ########.fr       */
+/*   Updated: 2024/12/19 18:41:15 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ft_precise_usleep(long usec, t_table *table)
 		elapsed = ft_getime(MICROSECOND) - start;
 		rem = usec - elapsed;
 		if (rem > 1e3)
-			usleep(usec / 2);
+			usleep(rem / 2);
 		else
 		{
 			while (ft_getime(MICROSECOND) - start < usec)
@@ -68,4 +68,20 @@ void	ft_increase_long(t_mtx *mutex, long *dest)
 	ft_mutex_safe(mutex, LOCK);
 	*dest += 1;
 	ft_mutex_safe(mutex, UNLOCK);
+}
+void	ft_clean(t_table *table)
+{
+	t_philo	*philo;
+	int	i;
+
+	i = -1;
+	while(++i < table->philo_nbr)
+	{
+		philo = table->philos + i;
+		ft_mutex_safe(&philo->philo_mutex_race, DESTROY);
+	}
+	ft_mutex_safe(&table->table_mutex, DESTROY);
+	ft_mutex_safe(&table->write_locks, DESTROY);
+	free(table->philos);
+	free(table->forks);
 }

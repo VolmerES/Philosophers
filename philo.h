@@ -6,7 +6,7 @@
 /*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 15:24:45 by jdelorme          #+#    #+#             */
-/*   Updated: 2024/12/19 18:23:59 by volmer           ###   ########.fr       */
+/*   Updated: 2024/12/19 18:40:04 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,6 +179,7 @@ long	ft_getime(t_time_code time_code);
 void	ft_precise_usleep(long usec, t_table *table);
 bool	ft_all_threads_running(t_mtx *mutex, long *threads_running, long philo_nbr);
 void	ft_increase_long(t_mtx *mutex, long *dest);
+void	ft_clean(t_table *table);
 
 /*				WRITE				*/
 void	ft_write_status(t_philo_status status, t_philo *philo, long debug);
