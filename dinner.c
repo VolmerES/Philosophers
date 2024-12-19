@@ -6,11 +6,25 @@
 /*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:42:27 by jdelorme          #+#    #+#             */
-/*   Updated: 2024/12/18 22:13:40 by volmer           ###   ########.fr       */
+/*   Updated: 2024/12/19 18:07:28 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	*ft_alone_philo(void *data)
+{
+	t_philo	*philo;
+
+	philo = (t_philo *)data;
+	ft_wait_all_threads(philo->table);
+	ft_set_long(&philo->philo_mutex_race, &philo->last_meal_time, ft_getime(MILLISECOND));
+	ft_increase_long(&philo->table->table_mutex, &philo->table->threads_running);
+	ft_write_status(TAKE_FIRST_FORK, philo, DEBUG_MODE);
+		while (!ft_simulation_finish((philo->table)))
+			usleep(200);
+	return (NULL);
+}
 
 static void	ft_thinking(t_philo *philo)
 {
@@ -41,6 +55,8 @@ void	*ft_start_simulation(void *data)
 
 	philo = (t_philo *)data;
 	ft_wait_all_threads(philo->table); // haciendose;
+	ft_set_long(&philo->philo_mutex_race, &philo->last_meal_time, ft_getime(MILLISECOND));
+	ft_increase_long(&philo->table->table_mutex, &philo->table->threads_running);
 	while (!ft_simulation_finish(philo->table))
 	{
 		//esta el filosofo lleno?
@@ -65,12 +81,13 @@ void	ft_dinner_start(t_table *table)
 	if (table->nbr_limit_meals == 0)
 		return ;
 	else if (table->philo_nbr == 1)
-		;//todo
+		ft_thread_safe(&table->philos[0].philo_id, CREATE, ft_alone_philo, &table->philos[0]);
 	else
 	{
 		while(table->philo_nbr > ++i)
 			ft_thread_safe(&table->philos[i].philo_id, CREATE, ft_start_simulation, &table->philos[i]);
 	}
+	ft_thread_safe(&table->monitor, CREATE, ft_monitor_dinner, table);
 	table->start_simulation = ft_getime(MILLISECOND);
 	ft_set_bool(&table->table_mutex, &table->threads_ready, true);
 	i = -1;

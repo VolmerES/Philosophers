@@ -1,6 +1,6 @@
 NAME = philo
 CC = gcc
-SRC = ./dinner.c ./error.c ./init.c ./parsing.c ./philo.c ./safe.c ./setgetter.c ./syncro.c ./utils.c ./write.c
+SRC = ./dinner.c ./error.c ./init.c ./parsing.c ./philo.c ./safe.c ./setgetter.c ./syncro.c ./utils.c ./write.c ./monitor.c
 
 #SRC_BONUS = 
 

@@ -6,7 +6,7 @@
 /*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 19:04:06 by volmer            #+#    #+#             */
-/*   Updated: 2024/12/05 21:07:06 by volmer           ###   ########.fr       */
+/*   Updated: 2024/12/19 17:46:58 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,23 @@ void	ft_precise_usleep(long usec, t_table *table)
 				;
 		}
 	}
+}
+
+bool	ft_all_threads_running(t_mtx *mutex, long *threads_running, long philo_nbr)
+{
+	bool	ret;
+
+	ret = false;
+	ft_mutex_safe(mutex, LOCK);
+	if (*threads_running == philo_nbr)
+		ret = true;
+	ft_mutex_safe(mutex, UNLOCK);
+	return (ret);
+}
+
+void	ft_increase_long(t_mtx *mutex, long *dest)
+{
+	ft_mutex_safe(mutex, LOCK);
+	*dest += 1;
+	ft_mutex_safe(mutex, UNLOCK);
 }

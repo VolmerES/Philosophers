@@ -6,7 +6,7 @@
 /*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 19:26:05 by volmer            #+#    #+#             */
-/*   Updated: 2024/12/18 22:18:01 by volmer           ###   ########.fr       */
+/*   Updated: 2024/12/19 18:23:13 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,15 @@ void	ft_write_status(t_philo_status status, t_philo *philo, long debug)
 	{
 		if ((TAKE_FIRST_FORK == status || TAKE_SECOND_FORK == status)
 				&& !ft_simulation_finish(philo->table))
-				printf("%-6ld --> %d has taken a fork\n", elapsed, philo->id);
+				printf("%-6ld --> PHILO %d has taken a fork\n", elapsed, philo->id);
 		else if (EATING == status && !ft_simulation_finish(philo->table))
-			printf("%-6ld --> %d is eating\n", elapsed, philo->id);
+			printf("%-6ld --> PHILO%d is eating\n", elapsed, philo->id);
 		else if (SLEEPING == status && !ft_simulation_finish(philo->table))
-			printf("%-6ld --> %d is sleeping\n", elapsed, philo->id);
+			printf("%-6ld --> PHILO %d is sleeping\n", elapsed, philo->id);
 		else if (THINKING == status && !ft_simulation_finish(philo->table))
-			printf("%-6ld --> %d is thinking\n", elapsed, philo->id);
+			printf("%-6ld --> PHILO %d is thinking\n", elapsed, philo->id);
 		else if (DIED == status && !ft_simulation_finish(philo->table))
-			printf("%-6ld --> %d died\n", elapsed, philo->id);
+			printf("%-6ld --> PHILO %d died\n", elapsed, philo->id);
 	}
 	ft_mutex_safe(&philo->table->write_locks, UNLOCK);
 }

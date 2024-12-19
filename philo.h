@@ -6,7 +6,7 @@
 /*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 15:24:45 by jdelorme          #+#    #+#             */
-/*   Updated: 2024/12/18 22:28:42 by volmer           ###   ########.fr       */
+/*   Updated: 2024/12/19 18:23:59 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 #define GREEN   "\x1B[32m"  // Verde
 #define BLUE    "\x1B[34m"  // Azul
 #define RESET   "\x1B[0m"   // Reset color in terminal
-#define DEBUG_MODE 1		//WRITE FUCNT
+#define DEBUG_MODE 0		//WRITE FUCNT
 
 
 
@@ -128,8 +128,10 @@ typedef struct	s_table
 	size_t	time_to_sleep;
 	size_t	nbr_limit_meals;
 	long		start_simulation;
+	long	threads_running;
 	bool	end_simulation;
 	bool	threads_ready;
+	pthread_t	monitor;
 	t_fork	*forks;
 	t_philo	*philos;
 	t_mtx	table_mutex;
@@ -175,8 +177,13 @@ void	ft_wait_all_threads(t_table *table);
 /*				UTILS				*/
 long	ft_getime(t_time_code time_code);
 void	ft_precise_usleep(long usec, t_table *table);
+bool	ft_all_threads_running(t_mtx *mutex, long *threads_running, long philo_nbr);
+void	ft_increase_long(t_mtx *mutex, long *dest);
 
 /*				WRITE				*/
 void	ft_write_status(t_philo_status status, t_philo *philo, long debug);
+
+/*				MONITOR				*/
+void	*ft_monitor_dinner(void *data);
 
 #endif

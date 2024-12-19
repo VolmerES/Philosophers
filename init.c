@@ -6,7 +6,7 @@
 /*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 14:23:15 by jdelorme          #+#    #+#             */
-/*   Updated: 2024/12/18 22:54:40 by volmer           ###   ########.fr       */
+/*   Updated: 2024/12/19 17:42:58 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	ft_init_data(t_table *table)
 	int	i;
 
 	i = -1;
+	table->threads_running = 0;
 	table->end_simulation = false;
 	table->threads_ready = false;
 	table->philos = ft_malloc_safe(sizeof(t_philo) * table->philo_nbr);
