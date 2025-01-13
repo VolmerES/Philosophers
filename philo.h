@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 15:24:45 by jdelorme          #+#    #+#             */
-/*   Updated: 2024/12/19 18:40:04 by volmer           ###   ########.fr       */
+/*   Updated: 2025/01/13 12:22:54 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 #include "libft/libft.h" 
 #include <errno.h> // Para las macros de salidas de error de mutex
 #include <stdbool.h> // Para el tipo de dato booleano
+#include <stdint.h>
 
 #define RED     "\x1B[31m"  // Rojo
 #define GREEN   "\x1B[32m"  // Verde

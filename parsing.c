@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 17:15:44 by jdelorme          #+#    #+#             */
-/*   Updated: 2024/12/18 22:15:05 by volmer           ###   ########.fr       */
+/*   Updated: 2025/01/13 12:27:51 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static size_t	ft_atosize_t(char *param)
 			BLUE "Please note, only numbers allowed" RESET);
 		nbr = nbr * 10 + (param[i] - '0');
 		i++;
-		if (nbr > LLONG_MAX)
+		if (nbr > SIZE_MAX / 10 || (nbr == SIZE_MAX / 10 && (param[i] - '0') > SIZE_MAX % 10))
 			ft_error_exit(RED "Error: Wrong parameters\n"
 			BLUE "Please note, numbers are too big" RESET);
 	}
