@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dinner.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:42:27 by jdelorme          #+#    #+#             */
-/*   Updated: 2024/12/19 18:36:02 by volmer           ###   ########.fr       */
+/*   Updated: 2025/01/14 11:48:45 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	*ft_alone_philo(void *data)
 static void	ft_thinking(t_philo *philo)
 {
 	ft_write_status(THINKING, philo, DEBUG_MODE);
+	ft_precise_usleep(philo->table->time_to_sleep, philo->table);
 }
 
 static void ft_eat(t_philo *philo)
