@@ -6,13 +6,11 @@
 /*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 17:15:44 by jdelorme          #+#    #+#             */
-/*   Updated: 2025/01/13 12:27:51 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/01/14 12:53:42 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
- /*TAL VEZ IMPLEMENTAR QUE LOS PARAMENTROS ESTEN ENTRE COMILLAS */
 
 static int	ft_is_negative_or_pos(char c)
 {
@@ -32,15 +30,16 @@ static size_t	ft_atosize_t(char *param)
 			i++;
 		if (param[i] == '-')
 			ft_error_exit(RED "Error: Wrong parameters\n"
-			BLUE "Please note, negatives numbers are not allowed" RESET);
+				BLUE "Please note, negatives numbers are not allowed" RESET);
 		else if (param[i] < '0' || param[i] > '9')
 			ft_error_exit(RED "Error: Wrong parameters\n"
-			BLUE "Please note, only numbers allowed" RESET);
+				BLUE "Please note, only numbers allowed" RESET);
 		nbr = nbr * 10 + (param[i] - '0');
 		i++;
-		if (nbr > SIZE_MAX / 10 || (nbr == SIZE_MAX / 10 && (param[i] - '0') > SIZE_MAX % 10))
+		if (nbr > SIZE_MAX / 10 || (nbr == SIZE_MAX / 10
+				&& (param[i] - '0') > SIZE_MAX % 10))
 			ft_error_exit(RED "Error: Wrong parameters\n"
-			BLUE "Please note, numbers are too big" RESET);
+				BLUE "Please note, numbers are too big" RESET);
 	}
 	return (nbr);
 }

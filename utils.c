@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 19:04:06 by volmer            #+#    #+#             */
-/*   Updated: 2024/12/19 18:41:15 by volmer           ###   ########.fr       */
+/*   Updated: 2025/01/14 12:58:07 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ long	ft_getime(t_time_code time_code)
 		ft_error_exit("Wrong input for getttime");
 	return (1337);
 }
+
 void	ft_precise_usleep(long usec, t_table *table)
 {
 	long	start;
@@ -51,7 +52,8 @@ void	ft_precise_usleep(long usec, t_table *table)
 	}
 }
 
-bool	ft_all_threads_running(t_mtx *mutex, long *threads_running, long philo_nbr)
+bool	ft_all_threads_running(t_mtx *mutex, long *threads_running,
+	long philo_nbr)
 {
 	bool	ret;
 
@@ -69,13 +71,14 @@ void	ft_increase_long(t_mtx *mutex, long *dest)
 	*dest += 1;
 	ft_mutex_safe(mutex, UNLOCK);
 }
+
 void	ft_clean(t_table *table)
 {
 	t_philo	*philo;
-	int	i;
+	int		i;
 
 	i = -1;
-	while(++i < table->philo_nbr)
+	while (++i < table->philo_nbr)
 	{
 		philo = table->philos + i;
 		ft_mutex_safe(&philo->philo_mutex_race, DESTROY);
