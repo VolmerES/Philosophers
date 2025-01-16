@@ -6,7 +6,7 @@
 /*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 17:53:28 by jdelorme          #+#    #+#             */
-/*   Updated: 2025/01/14 12:55:42 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/01/16 14:36:47 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	*ft_malloc_safe(size_t size)
 	ptr = malloc(size);
 	if (!ptr)
 		ft_error_exit(RED "Error: Malloc failed\n" RESET);
-	printf("Malloc success\n");
 	return (ptr);
 }
 

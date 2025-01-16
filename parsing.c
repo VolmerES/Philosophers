@@ -6,7 +6,7 @@
 /*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 17:15:44 by jdelorme          #+#    #+#             */
-/*   Updated: 2025/01/14 12:53:42 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/01/16 14:37:18 by jdelorme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,12 @@ static size_t	ft_atosize_t(char *param)
 void	ft_parsing_philo(t_table *table, char **params)
 {
 	table->philo_nbr = ft_atosize_t(params[1]);
-	printf("Philo number: %zu\n", table->philo_nbr);
 	table->time_to_die = ft_atosize_t(params[2]) * 1000;
-	printf("Time to die: %zu\n", table->time_to_die);
 	table->time_to_eat = ft_atosize_t(params[3]) * 1000;
-	printf("Time to eat: %zu\n", table->time_to_eat);
 	table->time_to_sleep = ft_atosize_t(params[4]) * 1000;
-	printf("Time to sleep: %zu\n", table->time_to_sleep);
 	if (params[5])
 	{
 		table->nbr_limit_meals = ft_atosize_t(params[5]);
-		printf("Must eat: %zu\n", table->nbr_limit_meals);
 	}
 	else
 		table->nbr_limit_meals = -1;
