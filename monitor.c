@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   monitor.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
+/*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 17:38:01 by volmer            #+#    #+#             */
-/*   Updated: 2025/01/14 12:52:38 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/01/29 19:37:09 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 static bool	ft_philo_died(t_philo *philo)
 {
-	long	elapsed;
-	long	time_to_die;
+    long	elapsed;
+    long	time_to_die;
 
-	if (ft_get_bool(&philo->philo_mutex_race, &philo->full))
-		return (false);
-	elapsed = ft_getime(MILLISECOND) - ft_get_long(&philo->philo_mutex_race,
-			&philo->last_meal_time);
-	time_to_die = philo->table->time_to_die / 1e3;
-	if (elapsed > time_to_die)
-		return (true);
-	return (false);
+    if (ft_get_bool(&philo->philo_mutex_race, &philo->full))
+        return (false);
+    elapsed = ft_getime(MILLISECOND) - ft_get_long(&philo->philo_mutex_race,
+            &philo->last_meal_time);
+    time_to_die = philo->table->time_to_die; // No es necesario dividir por 1e3 si ya está en milisegundos
+    if (elapsed > time_to_die)
+        return (true);
+    return (false);
 }
 
 void	*ft_monitor_dinner(void *data)

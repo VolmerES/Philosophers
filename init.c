@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
+/*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 14:23:15 by jdelorme          #+#    #+#             */
-/*   Updated: 2025/01/14 12:51:03 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/01/29 19:34:34 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,12 @@ static void	ft_assign_forks(t_philo *philo, t_fork *forks, int pos)
 	int	philo_nbr;
 
 	philo_nbr = philo->table->philo_nbr;
-	if (pos % 2 == 0)
+	philo->first_fork = &forks[(pos + 1) % philo_nbr];
+	philo->second_fork = &forks[pos];
+	if (philo->id % 2 == 0)
 	{
 		philo->first_fork = &forks[pos];
 		philo->second_fork = &forks[(pos + 1) % philo_nbr];
-	}
-	else
-	{
-		philo->first_fork = &forks[(pos + 1) % philo_nbr];
-		philo->second_fork = &forks[pos];
 	}
 }
 
