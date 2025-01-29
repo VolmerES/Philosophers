@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
+/*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 15:24:45 by jdelorme          #+#    #+#             */
-/*   Updated: 2025/01/14 13:08:57 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/01/29 18:34:33 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,7 @@ void	ft_thread_safe(pthread_t *thread, t_code code,
 /*				DINNER.C			*/
 void	ft_dinner_start(t_table *table);
 void	*ft_start_simulation(void *data);
+void	ft_thinking(t_philo *philo, bool sync);
 
 /*				SERGETEER.C			*/
 bool	ft_simulation_finish(t_table *table);
@@ -167,6 +168,7 @@ void	ft_set_bool(t_mtx *mutex, bool *dest, bool value);
 
 /*				SYNCHRO				*/
 void	ft_wait_all_threads(t_table *table);
+void	ft_desync(t_philo *philo);
 
 /*				UTILS				*/
 long	ft_getime(t_time_code time_code);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dinner.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelorme <jdelorme@student.42.fr>          +#+  +:+       +#+        */
+/*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:42:27 by jdelorme          #+#    #+#             */
-/*   Updated: 2025/01/14 12:43:16 by jdelorme         ###   ########.fr       */
+/*   Updated: 2025/01/29 18:55:12 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,21 @@ void	*ft_alone_philo(void *data)
 	return (NULL);
 }
 
-static void	ft_thinking(t_philo *philo)
+void	ft_thinking(t_philo *philo, bool sync)
 {
+	long	t_eat;
+	long	t_sleep;
+	long	t_think;
+
 	ft_write_status(THINKING, philo, DEBUG_MODE);
-	ft_precise_usleep(philo->table->time_to_sleep, philo->table);
+	if (philo->table->philo_nbr % 2 == 0)
+		return ;
+	t_eat = philo->table->time_to_eat;
+	t_sleep = philo->table->time_to_sleep;
+	t_think = t_eat * 2 - t_sleep;
+	if (t_think < 0)
+		t_think = 0;
+	ft_precise_usleep(t_think * 0.50, philo->table);	
 }
 
 static void	ft_eat(t_philo *philo)
@@ -62,6 +73,7 @@ void	*ft_start_simulation(void *data)
 		&philo->last_meal_time, ft_getime(MILLISECOND));
 	ft_increase_long(&philo->table->table_mutex,
 		&philo->table->threads_running);
+	ft_desync(philo);
 	while (!ft_simulation_finish(philo->table))
 	{
 		if (philo->full)
@@ -69,7 +81,7 @@ void	*ft_start_simulation(void *data)
 		ft_eat(philo);
 		ft_write_status(SLEEPING, philo, DEBUG_MODE);
 		ft_precise_usleep(philo->table->time_to_sleep, philo->table);
-		ft_thinking(philo);
+		ft_thinking(philo, false);
 	}
 	return (NULL);
 }
