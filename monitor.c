@@ -6,7 +6,7 @@
 /*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 17:38:01 by volmer            #+#    #+#             */
-/*   Updated: 2025/01/29 19:37:09 by volmer           ###   ########.fr       */
+/*   Updated: 2025/01/29 19:54:01 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static bool	ft_philo_died(t_philo *philo)
         return (false);
     elapsed = ft_getime(MILLISECOND) - ft_get_long(&philo->philo_mutex_race,
             &philo->last_meal_time);
-    time_to_die = philo->table->time_to_die; // No es necesario dividir por 1e3 si ya está en milisegundos
+    time_to_die = philo->table->time_to_die / 1e3;
     if (elapsed > time_to_die)
         return (true);
     return (false);

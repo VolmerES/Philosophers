@@ -6,7 +6,7 @@
 /*   By: volmer <volmer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:42:27 by jdelorme          #+#    #+#             */
-/*   Updated: 2025/01/29 18:55:12 by volmer           ###   ########.fr       */
+/*   Updated: 2025/01/29 19:44:29 by volmer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ft_thinking(t_philo *philo, bool sync)
 	t_think = t_eat * 2 - t_sleep;
 	if (t_think < 0)
 		t_think = 0;
-	ft_precise_usleep(t_think * 0.50, philo->table);	
+	ft_precise_usleep(t_think * 0.42, philo->table);	
 }
 
 static void	ft_eat(t_philo *philo)
